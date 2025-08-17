@@ -467,9 +467,9 @@ def send_email():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-TWILIO_SID = "AC9aec599bd9f3cbe256412b3edf206d68"
-TWILIO_AUTH = "64f785f72b086bde5a5980b55801375b"
-TWILIO_FROM = "+16672184308"
+Twilio_SID = os.getenv("TWILIO_SID")
+Twilio_AUTH = os.getenv("TWILIO_AUTH")
+Twilio_FROM = os.getenv("TWILIO_FROM")
 
 @app.route("/send_sms", methods=["POST"])
 def send_sms():

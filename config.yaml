@@ -1,0 +1,60 @@
+# WindTexter Configuration File
+
+# Compression Block Parameters
+compression:
+  method: 'utf8'  # Options: 'utf8', 'lz77', 'huffman', 'six_bit', 'seven_bit'
+
+# Encryption Block Parameters
+encryption:
+  cipher_mode: 'OFB'  # AES encryption mode: OFB, EAX
+  key_length: 16      # AES encryption key length in bytes
+  # OFB is encryption-only mode with key and IV (initialization vector, same size as key)
+  # EAX is authenticated encryption with key, nonce and tag (both same size)
+  key: "\xa0\xb9\x1c_\xcb&\x81Hk\xe0\xb4s\xe0\x88\xe9\x15"
+  iv: "\x16\x82\xd52\x0b\xf5+h\xe6\xccN\x850\xafF\x97"
+  key_length: 16
+
+# NLP Block Parameters
+nlp:
+  context: "Hello! "  # Context used for steganography
+  model: "HuggingFaceTB/SmolLM2-360M-Instruct"  # Options: gpt2, DialoGPT, byt5, byt5_trained, byt5_trained_russian
+  device: 0                       # GPU device ID
+  temperature: 1.0                # Temperature for arithmetic/huffman encoding method
+  precision: 26                   # Precision for arithmetic encoding method
+  topk: 20000                       # TopK for arithmetic encoding method (needs to be updated in SAAC)
+  delta: 0.05                     # Delta for adaptive arithmetic encoding method
+  # steganography_method: 'saac'    # Options: saac, new_saac, arith_saac
+
+# Debug and Testing Flags
+debug:
+  debug_mode: False  # Enable debug mode for detailed logging
+  verbose: False  # Enable verbose output
+  log_file: 'windtexter.log'  # Log file path
+  collect_stats: False  # Collect statistics during execution
+  # arithmetic_test: false
+  # plot_verbose: false
+  # nlp_verbose: false
+  # demo_mode: true
+  # plot_verbose_alt: false  # Note: plotVerose appears to be a typo in original
+  # receiver_flag: false
+  # verbose_saac: false
+
+# # Interleaving Block Parameters
+# interleaving:
+#   n_networks: 1           # Number of paths/Apps used to send the message
+#   min_paths: 1            # Minimum number of required paths to reconstruct the message
+#   method: 'erasure_code_RS'  # Options: shamir (Shamir Secret Sharing), erasure_code_RS (Erasure Coding)
+
+# # Relaying Block Parameters
+# relaying:
+#   port: 9997
+
+# # Network Configuration
+# network:
+#   sender:
+#     host: 'localhost'
+#     port: 9997
+#   client:
+#     host: 'localhost'
+#     port: 9998
+#   buffer_size: 4096  # Buffer size for socket communication
